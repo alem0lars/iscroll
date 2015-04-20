@@ -1,4 +1,4 @@
-/*! iScroll v5.1.3 ~ (c) 2008-2014 Matteo Spinelli ~ http://cubiq.org/license */
+/*! iScroll v5.1.3 ~ (c) 2008-2015 Matteo Spinelli ~ http://cubiq.org/license */
 (function (window, document, Math) {
 var rAF = window.requestAnimationFrame	||
 	window.webkitRequestAnimationFrame	||
@@ -839,23 +839,26 @@ IScroll.prototype = {
 	},
 
 	_translate: function (x, y) {
-		if ( this.options.useTransform ) {
+
+		if ( !this._scrollDisabled ) {
+
+			if ( this.options.useTransform ) {
 
 /* REPLACE START: _translate */
 
-			this.scrollerStyle[utils.style.transform] = 'translate(' + x + 'px,' + y + 'px)' + this.translateZ;
+				this.scrollerStyle[utils.style.transform] = 'translate(' + x + 'px,' + y + 'px)' + this.translateZ;
 
 /* REPLACE END: _translate */
 
-		} else {
-			x = Math.round(x);
-			y = Math.round(y);
-			this.scrollerStyle.left = x + 'px';
-			this.scrollerStyle.top = y + 'px';
-		}
+			} else {
+				x = Math.round(x);
+				y = Math.round(y);
+				this.scrollerStyle.left = x + 'px';
+				this.scrollerStyle.top = y + 'px';
+			}
 
-		this.x = x;
-		this.y = y;
+			this.x = x;
+			this.y = y;
 
 
 	if ( this.indicators ) {
@@ -867,7 +870,16 @@ IScroll.prototype = {
 
 // INSERT POINT: _translate
 
+		}
+
 	},
+	
+	disableScroll: function() {
+		this._scrollDisabled = true;
+	},
+	enableScroll: function() {
+		this._scrollDisabled = false;
+	}
 
 	_initEvents: function (remove) {
 		var eventType = remove ? utils.removeEvent : utils.addEvent,
