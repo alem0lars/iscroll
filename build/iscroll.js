@@ -870,7 +870,7 @@ IScroll.prototype = {
 	},
 	enableScroll: function() {
 		this._scrollDisabled = false;
-	}
+	},
 
 	_initEvents: function (remove) {
 		var eventType = remove ? utils.removeEvent : utils.addEvent,

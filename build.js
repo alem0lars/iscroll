@@ -141,8 +141,8 @@ function build (release) {
 	if ( !hint(out) ) {
 		var lines = out.split('\n');
 		hint.errors.forEach(function (err) {
-			console.log('\033[31m[' + err.code + ']\033[0m ' + err.line + ':' + err.character + '\t- ' + err.reason);
-			console.log('\033[33m' + lines[err.line-1].replace(/\t/g, ' ') + '\033[0m\n');
+			//console.log('\033[31m[' + err.code + ']\033[0m ' + err.line + ':' + err.character + '\t- ' + err.reason);
+			//console.log('\033[33m' + lines[err.line-1].replace(/\t/g, ' ') + '\033[0m\n');
 		});
 
 		process.exit();
